@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags-->
+    <title>TravelCards</title>
+    <!-- Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/typeahead.css">
+    <script src="https://use.fontawesome.com/25466030b0.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!--if lt IE 9
+    script(src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')
+    script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+    -->
+  </head>
+  <body ng-app="results" ng-controller="searchedCity">
+    <div style="height: 100%; width: 100%">
+      <div style="height: 100%; width: 100%" class="row">
+        <div style="overflow-y: scroll; height: 100%; width: 20%; float: left; position: fixed; background: #444140;">
+          <h2 class="text-xs-center" style="color: #F7EBE8;">{{cityValue}}</h2>
+          <ul class="nav nav-tabs">
+            <li class="nav-item" style="width: 49%;">
+              <a class="nav-link active text-xs-center" href="#">
+                <i class="fa fa-map" aria-hidden="true" style="color: #1E1E24"></i>
+              </a>
+            </li>
+            <li class="nav-item" style="width: 49%;">
+              <a class="nav-link text-xs-center" href="#">
+                <i class="fa fa-road" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+          <div class="card" ng-controller="attractionCTRL" style="">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" data-name="{{attraction.name}}" data-address="{{attraction.address}}" ng-click="addMarker($event)" ng-repeat="attraction in attractions">{{attraction.name}}</li>
+            </ul>
+          </div>
+        </div>
+        <div id="map" style="width:80%;height:100%; float: right;"></div>
+      </div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+  <script src="js/results.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4nFniOsFKrtNXxKCLj8BM6J0et28b5-A"></script>
+  <script src="js/Map/mapController.js"></script>
+  </body>
+</html>

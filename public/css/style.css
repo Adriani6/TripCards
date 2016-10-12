@@ -1,0 +1,83 @@
+html, body{
+    height: 100%;
+    width: 100%;
+}
+#welcome{
+    background: url("../img/wh2.jpg");
+    background-size: 100% 100%;
+}
+.no-padding{
+    padding-right: 0;
+    padding-left: 0;
+}
+.row{
+    margin: 0 0;
+}
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+.col-centered{
+    margin: 0 auto;
+    float: none;
+}
+.inputQuery{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+     -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
+}
+input[type="text"]{
+    font-size: 32px;
+    color: white;
+}
+input[type="text"]:focus{
+    background-color: transparent;
+    font-size: 32px;
+    color: white;
+}
+
+.inputQuery::-webkit-input-placeholder {
+   color: white;
+   font-size: 32px;
+}
+.input-group-addon{
+    background: transparent;
+    border: 0;
+    border-bottom: 1px white solid;
+    -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
+    color: white;
+    font-size: 32px;
+}
+
+.alert{
+    float: right;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+ 
+::-webkit-scrollbar-track {
+    background: #444140;
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    background: #EE6C4D;
+}
+#sidebar{
+    overflow-y: scroll; 
+    height: 100%; 
+    width: 20%; 
+    float: left; 
+    position: fixed; 
+    background: #444140;
+}
