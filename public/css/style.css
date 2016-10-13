@@ -81,3 +81,13 @@ input[type="text"]:focus{
     position: fixed; 
     background: #444140;
 }
+
+#splashloadingscreen{
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    z-index: 99; 
+    background: #fd746c; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #fd746c , #ff9068); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #fd746c , #ff9068); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}

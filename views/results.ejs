@@ -21,9 +21,12 @@
 	<body ng-app="results" ng-controller="searchedCity">
 		<div style="height: 100%; width: 100%">
         <!-- Start of Loading/Splash Screen -->
-            <div id="splashloadingscreen" style="position: absolute; width: 100%; height: 100%; z-index: 99; background: #4C5454;">
-                <h1 style="color: #FF715B;" layout="row" layout-align="center">TripCards</h1>
-                <md-progress-linear md-mode="indeterminate" style="width: 400px; left: 500px;"></md-progress-linear>
+            <div id="splashloadingscreen">
+				<div style="display: block; margin: auto; width: 600px;">
+					<img src="img/logo.png" layout="row" layout-align="center" style="width: 100%;">
+					<md-progress-linear md-mode="indeterminate" style="width: 600px;"></md-progress-linear>
+					<h3 layout="row" layout-align="center">Please. Wait. Loading Data...</h3>
+				</div>
             </div>
 
         <!-- End of Loading/Splash Screen -->
