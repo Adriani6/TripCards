@@ -91,3 +91,7 @@ input[type="text"]:focus{
     background: -webkit-linear-gradient(to bottom, #fd746c , #ff9068); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #fd746c , #ff9068); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+.active{
+    background: #d44d5c;
+    color: #F5E9E2;
+}

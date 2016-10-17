@@ -1,7 +1,9 @@
+/**
+* @param {string} city - City String which gets converted to LangLat for Maps API.
+*/
 function MapController(city)
 {
     //57.1716667 -2.1024999999999636
-    this.markers = new Array();
     var self = this;
     this.Marker.ConvertAddress(city, function(latlang)
     {
@@ -9,7 +11,8 @@ function MapController(city)
     })    
 }
 
-var map;
+var map,
+markers = new Array();
 
 MapController.prototype.Map = 
 {
@@ -32,17 +35,18 @@ MapController.prototype.Map =
 
 MapController.prototype.Marker = 
 {
-    Add: function(name, coords)
+    Add: function(name, coords, id)
     {
-        var id = (this.markers != undefined) ? this.markers.length : 0;
         var marker = new google.maps.Marker(
             {
+                id: id,
                 position: coords,
                 map: map,
                 title: name,
                 animation: google.maps.Animation.DROP
             })
 
+        markers.push(marker);
         this.CreateListener(marker, id, name);
     },
 
@@ -56,6 +60,27 @@ MapController.prototype.Marker =
                 infowindow.open(map, marker);
             }
         })(marker, id));
+    },
+
+    Remove: function(mid, cb)
+    {
+        function removeClosure(id)
+        {
+            for(var i = 0; i < markers.length; i++)
+            {
+                if(id == markers[i].id)
+                {
+                    markers[i].setMap(null);
+                    markers.splice(i, 1);
+                }
+                else
+                {
+                    markers[i].setMap(map);
+                }
+            }
+            cb();
+        }
+        removeClosure(mid);
     },
 
     ConvertAddress: function(address, cb)

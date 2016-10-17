@@ -30,7 +30,7 @@
             </div>
 
         <!-- End of Loading/Splash Screen -->
-        <md-button class="md-fab" aria-label="Eat cake" style="right: 35px; position: absolute; bottom: 20px;">
+        <md-button class="md-fab" aria-label="Eat cake" style="right: 35px; position: absolute; bottom: 20px;" ng-click="fabClick()">
             <i class="material-icons" style="margin-top: 10px;">add_location <span layout="row" layout-align="center center" style="font-family: 'Times New Roman', Times, serif; font-size: 10px;">{{selectedCounter}}</span></i>
         </md-button>
 			<div id="sidebar">
@@ -50,7 +50,7 @@
                                     </md-content>
 									<md-list ng-controller="attractionCTRL">
 										<md-subheader class="md-no-sticky">Attractions & POIs</md-subheader>
-										<md-list-item ng-repeat="attraction in attractions | filter:search" finished-loading-items ng-click="addMarker(attraction)">
+										<md-list-item ng-repeat="attraction in attractions | filter:search" ng-class="{active : isSelected(attraction)}" finished-loading-items ng-click="clickMarker($event, attraction)">
 											{{attraction.name}}
 											<md-divider></md-divider>
 										</md-list-item>
@@ -102,6 +102,7 @@
 		<!-- My Files -->
         <script src="js/session.js"></script>
 		<script src="js/results.js"></script>
+		<script src="js/results-directives.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4nFniOsFKrtNXxKCLj8BM6J0et28b5-A"></script>
 		<script src="js/Map/mapController.js"></script>
 	</body>

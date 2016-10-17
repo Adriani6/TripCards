@@ -16,6 +16,10 @@ app.controller('searchedCity', function($scope, $location, $rootScope)
 {
     $scope.cityValue = $location.search().city;
     $rootScope.selectedCounter = 0;
+    $scope.fabClick = function()
+    {
+        console.log("Alo Blyet");
+    }
 });
 
 app.controller('attractionCTRL', function($scope, $http, $location, $mdToast, $rootScope)
@@ -52,19 +56,45 @@ app.controller('attractionCTRL', function($scope, $http, $location, $mdToast, $r
         console.log("Error.");
     });
 
-    $scope.addMarker = function(attraction)
-    {
-        mc.Marker.ConvertAddress(attraction.address, function(latLang)
-        { 
-            mc.Marker.Add(attraction.name, latLang);
-            $mdToast.show($mdToast.simple()
-            .textContent("Added " + attraction.name)
-            .hideDelay(3000)
-            .position('top right'));
+    $scope.isSelected = function(section) {
+        return section.selected === true;
+    }
 
-            session.Attractions.Add(attraction);
+    $scope.clickMarker = function($event, attraction)
+    {
+        if(attraction.selected)
+        {
+            attraction.selected = false;
+            session.Attractions.Remove(attraction, function()
+            {
+                mc.Marker.Remove(attraction.id, function()
+                {
+                    $mdToast.show($mdToast.simple()
+                    .textContent("Removed " + attraction.name)
+                    .hideDelay(3000)
+                    .position('top right'));
+                });
+            })
             $rootScope.selectedCounter = session.Attractions.Count();
-        });
+        }
+        else
+        {
+            mc.Marker.ConvertAddress(attraction.address, function(latLang)
+            { 
+                mc.Marker.Add(attraction.name, latLang, session.Attractions.Count());
+                $mdToast.show($mdToast.simple()
+                .textContent("Added " + attraction.name)
+                .hideDelay(3000)
+                .position('top right'));
+
+                attraction.id = session.Attractions.Count();
+                session.Attractions.Add(attraction);
+                $rootScope.selectedCounter = session.Attractions.Count();
+
+                attraction.selected = true;
+                
+            });
+        }      
     }
     
 })
