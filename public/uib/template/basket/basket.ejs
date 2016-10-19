@@ -1,0 +1,20 @@
+<div flex>
+	<span style="float: right; margin-right: 15px; margin-top: 15px; cursor: pointer;" ng-click="fabClick()">
+		<i class="material-icons">highlight_off</i>
+	</span>
+</div>
+<md-card flex="40" ng-repeat="att in basketAttractions" finished-loading-items ng-controller="ratingController">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{att.name}}</span>
+            <span class="md-subhead">{{att.location}}<span style="visibility: hidden;" ng-bind="att.rating"></span><span style="float: right; font-size: 16px;" class="material-icons">{{rating}}</span></span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-sm card-media material-icons" style="font-size: 60px;">{{emblem}}</div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button ng-click="openMap(att)">Show on Map</md-button>
+          <md-button ng-click="removeAttractionFromBasket(att)">Remove</md-button>
+        </md-card-actions>
+</md-card>

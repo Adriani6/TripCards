@@ -19,7 +19,8 @@
 			-->
 	</head>
 	<body ng-app="results" ng-controller="searchedCity">
-		<div style="height: 100%; width: 100%">
+		<div ng-include="'/uib/template/basket/basket.ejs'" id="basket" style="height: 100%; width: 100%; display: none;"></div>
+		<div style="height: 100%; width: 100%" id="mainScreen">
         <!-- Start of Loading/Splash Screen -->
             <div id="splashloadingscreen">
 				<div style="display: block; margin: auto; width: 600px;">
@@ -88,7 +89,7 @@
 					</md-content>
 				</div>
 			</div>
-			<div id="map" style="width:80%;height:100%; float: right;"></div>
+			<div id="map" style="width:80%;height:100%; float: right; overflow: hidden;"></div>
 		</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 		<!-- Angular Material requires Angular.js Libraries -->
@@ -100,10 +101,13 @@
 		<!-- Angular Route Library -->
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
 		<!-- My Files -->
+		<script src="js/Map/places.js"></script>
+		<script src="js/basket.js"></script>
         <script src="js/session.js"></script>
 		<script src="js/results.js"></script>
 		<script src="js/results-directives.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4nFniOsFKrtNXxKCLj8BM6J0et28b5-A"></script>
 		<script src="js/Map/mapController.js"></script>
+		<script src="js/Basket/basket_directive.js"></script>
 	</body>
 </html>

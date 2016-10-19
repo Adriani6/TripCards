@@ -1,24 +1,28 @@
+// GLOBALS
+
+var mc, session = undefined;
+
 var app = angular.module('results', ['ngRoute', 'ngMaterial']).config(function($locationProvider) {
         $locationProvider.html5Mode(true);
-    });
+});
 
 app.directive('finishedLoadingItems', function() {
   return function(scope, element, attrs) {
     if (scope.$last){
       // iteration is complete, remove loading screen.
+      console.log(scope.$last);
       angular.element(document.querySelector("#splashloadingscreen"))[0].style.display = "none";
-      //angular.element('#splashloadingscreen').css('display', 'none');
     }
   };
 });
 
-app.controller('searchedCity', function($scope, $location, $rootScope) 
+app.controller('searchedCity', function($scope, $location, $rootScope, $window) 
 {
     $scope.cityValue = $location.search().city;
     $rootScope.selectedCounter = 0;
     $scope.fabClick = function()
     {
-        console.log("Alo Blyet");
+        Basket.Toggle($scope);
     }
 });
 
@@ -26,8 +30,8 @@ app.controller('attractionCTRL', function($scope, $http, $location, $mdToast, $r
 {
     var val = $location.search().city
 
-    var mc = new MapController(val);
-    var session = new Session();
+    mc = new MapController(val);
+    session = new Session();
 
     $http.get('/api/city/' + val, {
     }).then(function(response){
@@ -46,11 +50,11 @@ app.controller('attractionCTRL', function($scope, $http, $location, $mdToast, $r
         {
             if(!containsObject(response.data.attractions[i], attractions))
             {
-                attractions.push(response.data.attractions[i]);
+                response.data.attractions[i].location = response.data.location;
             }
         }
-
-        $scope.attractions = attractions;
+        console.log(response.data);
+        $scope.attractions = response.data.attractions;
     }, function()
     {
         console.log("Error.");
@@ -79,7 +83,7 @@ app.controller('attractionCTRL', function($scope, $http, $location, $mdToast, $r
         }
         else
         {
-            mc.Marker.ConvertAddress(attraction.address, function(latLang)
+            mc.Marker.ConvertToLatLng(attraction.lat, attraction.lng, function(latLang)
             { 
                 mc.Marker.Add(attraction.name, latLang, session.Attractions.Count());
                 $mdToast.show($mdToast.simple()

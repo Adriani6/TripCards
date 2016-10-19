@@ -1,0 +1,1 @@
+var basketApp = angular.module("basket", []);

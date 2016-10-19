@@ -82,7 +82,16 @@ MapController.prototype.Marker =
         }
         removeClosure(mid);
     },
-
+    ConvertToLatLng : function(lat, lng, cb)
+    {
+        cb(new google.maps.LatLng(lat, lng));
+    },
+    /* 
+    *
+    * DEPRECIATED - The new database layout does not require this function to exist anymore. ConvertToLatLng() is to be used.
+    *               MapController constructor uses this ONLY and is yet to be changed once LatLng is saved in DB to reduce API calls.
+    *
+    */
     ConvertAddress: function(address, cb)
     {
         var geocoder = new google.maps.Geocoder();

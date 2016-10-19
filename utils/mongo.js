@@ -4,7 +4,7 @@ function MongoDB(){};
 
 MongoDB.prototype.findCity = function(city, callback)
 {
-    MongoClient.connect("mongodb://server.adriani6.co.uk:27017/travelcards", function(err, db)
+    MongoClient.connect("mongodb://server.adriani6.co.uk:27017/tripcards-demo", function(err, db)
     {
         if(err)
         {
@@ -20,6 +20,7 @@ MongoDB.prototype.findCity = function(city, callback)
                 {
                     var data = collection.findOne({location: {$regex: city, $options: "i"}}, function(err, doc)
                     {
+                        console.log(doc);
                         callback(doc);
                     });
                     db.close();
