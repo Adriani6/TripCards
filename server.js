@@ -78,4 +78,19 @@ app.get('/getPlace/:city/:attraction', function(req, res)
     }
 })
 
-var server = app.listen(1234);
+app.post('/saveCards', function(req, res)
+{
+    //Retrieve the locations and add to db + generate code for user to use.
+    var jsonString = "";
+
+    req.on('data', function (data) {
+        jsonString += data;
+    });
+
+    req.on('end', function()
+    {
+
+    })
+})
+
+var server = app.listen(1233);
