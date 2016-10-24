@@ -1,5 +1,8 @@
 app.controller('ratingController', function($scope, $window, $rootScope) {
 
+    var totalhrs = 0;
+    var totalmins = 0;
+
     if(!isNaN($scope.att.rating))
     {
         var rating = parseInt($scope.att.rating);
@@ -22,6 +25,17 @@ app.controller('ratingController', function($scope, $window, $rootScope) {
         win.focus();   
     }
 
+    $scope.uncheck = function(att)
+    {
+        att.selected = false;
+    }
+
+    $scope.remove = function(att)
+    {
+        att.selected = false;
+        this.removeAttractionFromBasket(att);
+    }
+
     $scope.removeAttractionFromBasket = function(att)
     {
         session.Attractions.Remove(att, function()
@@ -32,5 +46,42 @@ app.controller('ratingController', function($scope, $window, $rootScope) {
             })
         })
         $rootScope.selectedCounter = session.Attractions.Count();
+    }
+
+    $rootScope.totalTime = totalhrs;
+
+    $scope.updateTime = function(att, $evt)
+    {
+        totalhrs = 0;
+        att.startHours = parseInt($evt.target.value);
+        for(var i = 0; i < selected_attractions.length; i++)
+        {
+            if(selected_attractions[i].selected && selected_attractions[i].startHours != undefined)
+                totalhrs += parseInt(selected_attractions[i].startHours);
+        }
+
+        $rootScope.totalTime = totalhrs + " hours and " + totalmins + " minutes.";
+    }
+
+    $scope.updateMinutes = function(att, $evt)
+    {
+        totalmins = 0;
+        att.startMinutes = parseInt($evt.target.value);
+
+        for(var i = 0; i < selected_attractions.length; i++)
+        {
+            if(selected_attractions[i].selected && selected_attractions[i].startMinutes != undefined)
+                totalmins += parseInt(selected_attractions[i].startMinutes);
+        }
+
+        while(totalmins > 59)
+        {
+            totalhrs += 1;
+            totalmins -= 60;
+            att.startMinutes = parseInt(totalmins);
+            att.startHours = parseInt(totalhrs);
+        }
+
+        $rootScope.totalTime = totalhrs + " hours and " + totalmins + " minutes.";
     }
 });
