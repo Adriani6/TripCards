@@ -64,6 +64,8 @@ app.controller('attractionCTRL', function($scope, $http, $location, $mdToast, $r
         return section.selected === true;
     }
 
+    $scope.cat = "Adriann";
+
     $scope.clickMarker = function($event, attraction)
     {
         if(attraction.selected)

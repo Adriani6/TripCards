@@ -52,7 +52,7 @@
 									<md-list ng-controller="attractionCTRL">
 										<md-subheader class="md-no-sticky">Attractions & POIs</md-subheader>
 										<md-list-item ng-repeat="attraction in attractions | filter:search" ng-class="{active : isSelected(attraction)}" finished-loading-items ng-click="clickMarker($event, attraction)">
-											{{attraction.name}}
+											{{attraction.name}} <categorytypetranslator ng-repeat="cat in attraction.categories" class="material-icons">{{cat}}</categorytypetranslator>
 											<md-divider></md-divider>
 										</md-list-item>
 									</md-list>
@@ -105,6 +105,7 @@
 		<script src="js/basket.js"></script>
         <script src="js/session.js"></script>
 		<script src="js/results.js"></script>
+		<script src="js/LocationType_Library.js"></script>
 		<script src="js/results-directives.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4nFniOsFKrtNXxKCLj8BM6J0et28b5-A"></script>
 		<script src="js/Map/mapController.js"></script>
