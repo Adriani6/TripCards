@@ -32,7 +32,7 @@
       <md-list flex="45">
         <md-subheader class="md-no-sticky">Your TravelCards</md-subheader>
         <md-list-item finished-loading-items class="md-3-line" ng-repeat="att in basketAttractions" ng-controller="ratingController">
-        <md-checkbox ng-model="att.selected" ng-click=""></md-checkbox>
+        <md-checkbox ng-model="att.selected"></md-checkbox>
           <div class="md-list-item-text" layout="column">
             <h3>{{att.name}}</h3>
             <p>{{att.location}}</p>

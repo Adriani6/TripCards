@@ -1,7 +1,7 @@
-app.controller('ratingController', function($scope, $window, $rootScope) {
-
-    var totalhrs = 0;
+var totalhrs = 0;
     var totalmins = 0;
+
+app.controller('ratingController', function($scope, $window, $rootScope) {
 
     if(!isNaN($scope.att.rating))
     {
@@ -27,13 +27,34 @@ app.controller('ratingController', function($scope, $window, $rootScope) {
 
     $scope.uncheck = function(att)
     {
-        att.selected = false;
+        if(att.selected)
+        {
+            att.selected = false;
+            if(att.startHours)
+                totalhrs -= att.startHours;
+            if(att.startMinutes)
+                totalmins -= att.startMinutes;
+        }
+        else
+        {
+            att.selected = true;
+            if(att.startHours)
+                totalhrs += att.startHours;
+            if(att.startMinutes)
+                totalmins += att.startMinutes;
+        }
+        $rootScope.totalTime = totalhrs + " hours and " + totalmins + " minutes.";
     }
 
     $scope.remove = function(att)
     {
         att.selected = false;
+        if(att.startHours)
+            totalhrs -= att.startHours;
+        if(att.startMinutes)
+            totalmins -= att.startMinutes;
         this.removeAttractionFromBasket(att);
+        $rootScope.totalTime = totalhrs + " hours and " + totalmins + " minutes.";
     }
 
     $scope.removeAttractionFromBasket = function(att)
